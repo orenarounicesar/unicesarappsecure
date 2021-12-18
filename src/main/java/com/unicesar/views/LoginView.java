@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginView extends VerticalLayout implements View {
     
@@ -102,9 +103,11 @@ public class LoginView extends VerticalLayout implements View {
                 + "a.login, "
                 + "a.nombre_usuario, "
                 + "a.codigo_docente, "
-                + "a.codigo_estudiante "
+                + "a.codigo_estudiante, "
+                + "a.password "
             + "FROM usuarios a " 
-            + "WHERE BINARY a.login = ? AND a.password = md5(?) AND a.activo = 1  " 
+            + "WHERE BINARY a.login = ? AND a.activo = 1  "
+//                + "AND a.password = md5(?) " 
             + "LIMIT 1";
         GestionDB objConnect = null;
         try {
@@ -112,9 +115,8 @@ public class LoginView extends VerticalLayout implements View {
             Connection conexion = objConnect.getConexion();
             try (PreparedStatement stmt = conexion.prepareStatement(cadenaSql)) {
                 stmt.setString(1, txtLogin.getValue().trim());
-                stmt.setString(2, txtPassword.getValue().trim());
                 ResultSet rs = stmt.executeQuery();
-                if ( rs.next() ) {
+                if ( rs.next() && BCrypt.checkpw (txtPassword.getValue().trim(), rs.getString("password"))  ) {
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_USUARIO, rs.getString("codigo_usuario"));
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.LOGIN, rs.getString("login"));
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.NOMBRE_USUARIO, rs.getString("nombre_usuario"));

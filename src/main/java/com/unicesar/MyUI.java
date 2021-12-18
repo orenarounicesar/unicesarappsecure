@@ -40,15 +40,6 @@ public class MyUI extends UI {
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-//        String hashpw = BCrypt.hashpw ("1", BCrypt.gensalt ());
-//        System.out.println(hashpw);
-//        System.out.println(BCrypt.checkpw ("1", hashpw));
-//        
-//        hashpw = BCrypt.hashpw ("1", BCrypt.gensalt ());
-//        System.out.println(hashpw);
-//        System.out.println(BCrypt.checkpw ("1", hashpw));
-//        
-//        System.out.println(BCrypt.hashpw ("1", BCrypt.gensalt ()));
         Settings settings = new Settings();
         
         navigator = new Navigator(this, this);
