@@ -119,7 +119,7 @@ public class LoginView extends VerticalLayout implements View {
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.LOGIN, rs.getString("login"));
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.NOMBRE_USUARIO, rs.getString("nombre_usuario"));
                     UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_DOCENTE, rs.getString("codigo_docente"));
-                    UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_ESTUDAINTE, rs.getString("codigo_estudiante"));
+                    UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_ESTUDIANTE, rs.getString("codigo_estudiante"));
                     UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
                 } else {
                     Notification.show("Usuario y/o Contraseña Inconrectos", Notification.Type.HUMANIZED_MESSAGE);

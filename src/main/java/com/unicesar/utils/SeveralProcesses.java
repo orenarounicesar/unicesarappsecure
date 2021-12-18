@@ -367,7 +367,7 @@ public class SeveralProcesses {
     }
     
     public static Object getCodigoEstudianteEnSesion() {
-        return UI.getCurrent().getSession().getAttribute(VariablesSesion.CODIGO_ESTUDAINTE);
+        return UI.getCurrent().getSession().getAttribute(VariablesSesion.CODIGO_ESTUDIANTE);
     }
     
     public static void cerrarSesion() {
@@ -375,7 +375,7 @@ public class SeveralProcesses {
         UI.getCurrent().getSession().setAttribute(VariablesSesion.NOMBRE_USUARIO, null);
         UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_USUARIO, null);
         UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_DOCENTE, null);
-        UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_ESTUDAINTE, null);
+        UI.getCurrent().getSession().setAttribute(VariablesSesion.CODIGO_ESTUDIANTE, null);
         UI.getCurrent().getSession().close();
         UI.getCurrent().close();
         UI.getCurrent().getNavigator().navigateTo(Views.REGISTRARNOTAS);

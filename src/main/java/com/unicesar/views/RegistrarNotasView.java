@@ -46,7 +46,7 @@ import javax.naming.NamingException;
  *
  * @author orenaro
  */
-public class RegistrarNotas extends VerticalSplitPanel implements View {
+public class RegistrarNotasView extends VerticalSplitPanel implements View {
 
     private Label lblTitulo;
     private Label lblNombreDocente;

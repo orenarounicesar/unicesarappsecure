@@ -6,8 +6,10 @@ import com.unicesar.utils.Views;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.CustomizedSystemMessages;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
@@ -16,6 +18,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -24,6 +27,7 @@ import javax.servlet.ServletException;
  * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
  * overridden to add component to the user interface and initialize non-component functionality.
  */
+@Title("UnicesarApp")
 @Theme("mytheme")
 public class MyUI extends UI {
 
@@ -36,12 +40,44 @@ public class MyUI extends UI {
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+//        String hashpw = BCrypt.hashpw ("1", BCrypt.gensalt ());
+//        System.out.println(hashpw);
+//        System.out.println(BCrypt.checkpw ("1", hashpw));
+//        
+//        hashpw = BCrypt.hashpw ("1", BCrypt.gensalt ());
+//        System.out.println(hashpw);
+//        System.out.println(BCrypt.checkpw ("1", hashpw));
+//        
+//        System.out.println(BCrypt.hashpw ("1", BCrypt.gensalt ()));
         Settings settings = new Settings();
         
         navigator = new Navigator(this, this);
         
         Views.setViewsUI(navigator);
         VaadinSession.getCurrent().getSession().setMaxInactiveInterval((int)TimeUnit.MINUTES.toSeconds(Settings.MINUTOSSESION));
+        
+        navigator.addViewChangeListener(new ViewChangeListener() {
+            @Override
+            public boolean beforeViewChange(ViewChangeListener.ViewChangeEvent event) {
+                
+                if (event.getNewView().toString().toUpperCase().contains(Views.LOGIN) && UI.getCurrent().getSession().getAttribute(VariablesSesion.LOGIN) != null) {
+                    return false;
+                } else if (!event.getNewView().toString().toUpperCase().contains(Views.LOGIN) && UI.getCurrent().getSession().getAttribute(VariablesSesion.LOGIN) == null) {
+                    return false;
+                } else if (event.getNewView().toString().toUpperCase().contains(Views.REGISTRARNOTAS) && UI.getCurrent().getSession().getAttribute(VariablesSesion.CODIGO_DOCENTE) == null) {
+                    return false;
+                } else if (event.getNewView().toString().toUpperCase().contains(Views.CONSULTARNOTAS) && UI.getCurrent().getSession().getAttribute(VariablesSesion.CODIGO_ESTUDIANTE) == null) {
+                    return false;
+                }
+                
+                return true;
+            }
+
+            @Override
+            public void afterViewChange(ViewChangeListener.ViewChangeEvent event) {
+                
+            }
+        });
         
         navigator.navigateTo(Views.LOGIN);
         

@@ -49,7 +49,7 @@ public class GestionDB {
     public void conectar() throws NamingException, SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.10:3306/unicesarappdb?useSSL=false", "orenaro", "orenaro");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/unicesarappdb?useSSL=false", "orenaro", "orenaro");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GestionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
