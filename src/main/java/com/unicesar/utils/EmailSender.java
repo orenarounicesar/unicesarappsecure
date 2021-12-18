@@ -38,71 +38,6 @@ public class EmailSender {
     private final ArrayList<BeanFiles> files;
     
     private boolean mensajeEnviado = false;
-
-    public EmailSender(String emailOrigen, String password, File file, String fileName, String emailDestination, String emailIssue, String emailMessage, String datoAdicional) {
-        this.emailOrigen = emailOrigen;
-        this.password = password;
-        this.fileName = fileName;
-        this.emailDestination = emailDestination;
-        this.emailIssue = emailIssue;
-        this.emailMessage = emailMessage;
-        this.file = file;
-        this.datoAdicional = datoAdicional;
-        this.emailsDestination = null;
-        this.files = null;
-        this.cadenaSqlBitacoraEnvio = null;
-    }
-    
-    public EmailSender(String emailOrigen, String password, File file, String fileName, Address[] emailsDestination, String emailIssue, String emailMessage, String datoAdicional) {
-        this.emailOrigen = emailOrigen;
-        this.password = password;
-        this.fileName = fileName;
-        this.emailsDestination = emailsDestination;
-        this.emailIssue = emailIssue;
-        this.emailMessage = emailMessage;
-        this.file = file;
-        this.datoAdicional = datoAdicional;
-        this.emailDestination = null;
-        this.files = null;
-        this.cadenaSqlBitacoraEnvio = null;
-    }
-    
-    public EmailSender(
-            String emailOrigen, 
-            String password, 
-            ArrayList<BeanFiles> files, 
-            Address[] emailsDestination, 
-            String emailIssue, 
-            String emailMessage, 
-            String datoAdicional, 
-            String cadenaSqlBitacoraEnvio
-    ) {
-        this.emailOrigen = emailOrigen;
-        this.password = password;
-        this.fileName = null;
-        this.emailsDestination = emailsDestination;
-        this.emailIssue = emailIssue;
-        this.emailMessage = emailMessage;
-        this.datoAdicional = datoAdicional;
-        this.file = null;
-        this.emailDestination = null;
-        this.files = files;
-        this.cadenaSqlBitacoraEnvio = cadenaSqlBitacoraEnvio;
-    }
-    
-    public EmailSender(String emailOrigen, String password, Address[] emailsDestination, String emailIssue, String emailMessage, String datoAdicional) {
-        this.emailOrigen = emailOrigen;
-        this.password = password;
-        this.fileName = null;
-        this.emailsDestination = emailsDestination;
-        this.emailIssue = emailIssue;
-        this.emailMessage = emailMessage;
-        this.datoAdicional = datoAdicional;
-        this.file = null;
-        this.emailDestination = null;
-        this.files = null;
-        this.cadenaSqlBitacoraEnvio = null;
-    }
     
     public EmailSender(String emailOrigen, String password, String emailDestination, String emailIssue, String emailMessage, String datoAdicional, String cadenaSqlBitacoraEnvio, File file, String fileName) {
         this.emailOrigen = emailOrigen;
@@ -118,28 +53,6 @@ public class EmailSender {
         this.cadenaSqlBitacoraEnvio = cadenaSqlBitacoraEnvio;
     }
     
-    public EmailSender(
-            String emailOrigen, 
-            String password, 
-            String emailDestination, 
-            String emailIssue, 
-            String emailMessage, 
-            String datoAdicional, 
-            String cadenaSqlBitacoraEnvio, 
-            ArrayList<BeanFiles> files
-    ) {
-        this.emailOrigen = emailOrigen;
-        this.password = password;
-        this.emailDestination = emailDestination;
-        this.emailIssue = emailIssue;
-        this.emailMessage = emailMessage;
-        this.datoAdicional = datoAdicional;
-        this.fileName = null;
-        this.file = null;
-        this.emailsDestination = null;
-        this.files = files;
-        this.cadenaSqlBitacoraEnvio = cadenaSqlBitacoraEnvio;
-    }
 
     public boolean isMensajeEnviado() {
         return mensajeEnviado;
@@ -148,45 +61,45 @@ public class EmailSender {
     public void ejecutar() {
         if (this.emailDestination != null && !this.emailDestination.isEmpty() && !this.emailDestination.equals("no refiere")) {
             mensajeEnviado = send();
-            actualizarConfirmacionEnvio();
+//            actualizarConfirmacionEnvio();
             System.out.println("Mensaje enviado a " + this.emailDestination);
         }
     }
     
-    private void actualizarConfirmacionEnvio() {
-        if (mensajeEnviado && datoAdicional != null) {
-            GestionDB objConnect = null;
-            try {
-                objConnect = new GestionDB();
-                objConnect.insertarActualizarBorrar(datoAdicional, false);
-            } catch (NamingException | SQLException ex) {
-                Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, datoAdicional + " - " + SeveralProcesses.getSessionUser(), ex);
-            } finally {
-                try {
-                    if (objConnect != null)
-                        objConnect.desconectar();
-                } catch (SQLException ex) {
-                    Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, "Cerrando conexión - " + SeveralProcesses.getSessionUser(), ex);
-                }
-            }
-        }
-        if (mensajeEnviado && cadenaSqlBitacoraEnvio != null) {
-            GestionDB objConnect = null;
-            try {
-                objConnect = new GestionDB();
-                objConnect.insertarActualizarBorrar(cadenaSqlBitacoraEnvio, false);
-            } catch (NamingException | SQLException ex) {
-                Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, cadenaSqlBitacoraEnvio + " - " + SeveralProcesses.getSessionUser(), ex);
-            } finally {
-                try {
-                    if (objConnect != null)
-                        objConnect.desconectar();
-                } catch (SQLException ex) {
-                    Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, "Cerrando conexión - " + SeveralProcesses.getSessionUser(), ex);
-                }
-            }
-        }
-    }
+//    private void actualizarConfirmacionEnvio() {
+//        if (mensajeEnviado && datoAdicional != null) {
+//            GestionDB objConnect = null;
+//            try {
+//                objConnect = new GestionDB();
+//                objConnect.insertarActualizarBorrar(datoAdicional, false);
+//            } catch (NamingException | SQLException ex) {
+//                Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, datoAdicional + " - " + SeveralProcesses.getSessionUser(), ex);
+//            } finally {
+//                try {
+//                    if (objConnect != null)
+//                        objConnect.desconectar();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, "Cerrando conexión - " + SeveralProcesses.getSessionUser(), ex);
+//                }
+//            }
+//        }
+//        if (mensajeEnviado && cadenaSqlBitacoraEnvio != null) {
+//            GestionDB objConnect = null;
+//            try {
+//                objConnect = new GestionDB();
+//                objConnect.insertarActualizarBorrar(cadenaSqlBitacoraEnvio, false);
+//            } catch (NamingException | SQLException ex) {
+//                Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, cadenaSqlBitacoraEnvio + " - " + SeveralProcesses.getSessionUser(), ex);
+//            } finally {
+//                try {
+//                    if (objConnect != null)
+//                        objConnect.desconectar();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, "Cerrando conexión - " + SeveralProcesses.getSessionUser(), ex);
+//                }
+//            }
+//        }
+//    }
     
     private boolean send() {
         try {

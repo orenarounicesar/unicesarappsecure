@@ -5,7 +5,6 @@ import com.unicesar.utils.CloseConnection;
 import com.unicesar.utils.Settings;
 import com.vaadin.data.util.sqlcontainer.connection.J2EEConnectionPool;
 import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
-import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -105,54 +104,26 @@ public class GestionDB {
         return clausula;
     }
     
-    public String insertarActualizarBorrar(String cadenaSql, boolean returnKey) throws SQLException {
-        if (this.verificarCierreConexion)
-            this.listaSentencias.add(cadenaSql);
-        if (nombreTabla != null)
-            nombreTabla = "'" + nombreTabla + "'";
-        if ( returnKey == false ) {
-            instancia.execute(cadenaSql);
-//            if ("slplusdbjndi".equals(vJndi)) {
-//                instancia.execute("INSERT INTO bitacora (login, cadenasql, fecha, llave, tipo, nombre_tabla) VALUES (\"" 
-//                + UI.getCurrent().getSession().getAttribute(VariablesSesion.CURRENT_USER).toString() + "\", \"" + cadenaSql + "\", now(), "
-//                        + llaveTabla + ", '"
-//                        + cadenaSql.substring(0, 6) + "', "
-//                        + nombreTabla + ")");
-//            }
-            nombreTabla = null;
-            llaveTabla = null;
-            return "true";
-        } else {
-            instancia.execute(cadenaSql,Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = instancia.getGeneratedKeys();
-            rs.next();
-            String llaveGenerada = rs.getString(1);
-//            if ("slplusdbjndi".equals(vJndi)) {
-//                instancia.execute("INSERT INTO bitacora (login, cadenasql, fecha, llave, tipo, nombre_tabla) VALUES (\""
-//                    + UI.getCurrent().getSession().getAttribute(VariablesSesion.CURRENT_USER).toString() + "\", \"" + cadenaSql + "\", now(), "
-//                    + llaveGenerada + ", '"
-//                    + cadenaSql.substring(0, 6) + "', "
-//                    + nombreTabla + ")");
-//            }
-            nombreTabla = null;
-            llaveTabla = null;
-            return "true" + llaveGenerada;
-        }
-    }
-    
-    public String insertarActualizarBlob(ByteArrayOutputStream file, String cadenaSql, boolean returnKey) throws SQLException {
-        if (this.verificarCierreConexion)
-            this.listaSentencias.add(cadenaSql);
-        if (returnKey==false) {
-            instancia.execute(cadenaSql);
-            return "true";
-        }else{
-            instancia.execute(cadenaSql,Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = instancia.getGeneratedKeys();
-            rs.next();
-            return "true"+rs.getInt(1);
-        }
-    }
+//    public String insertarActualizarBorrar(String cadenaSql, boolean returnKey) throws SQLException {
+//        if (this.verificarCierreConexion)
+//            this.listaSentencias.add(cadenaSql);
+//        if (nombreTabla != null)
+//            nombreTabla = "'" + nombreTabla + "'";
+//        if ( returnKey == false ) {
+//            instancia.execute(cadenaSql);
+//            nombreTabla = null;
+//            llaveTabla = null;
+//            return "true";
+//        } else {
+//            instancia.execute(cadenaSql,Statement.RETURN_GENERATED_KEYS);
+//            ResultSet rs = instancia.getGeneratedKeys();
+//            rs.next();
+//            String llaveGenerada = rs.getString(1);
+//            nombreTabla = null;
+//            llaveTabla = null;
+//            return "true" + llaveGenerada;
+//        }
+//    }
     
     public void begin() throws SQLException {
         if (this.verificarCierreConexion)

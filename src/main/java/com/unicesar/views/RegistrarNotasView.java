@@ -283,13 +283,12 @@ public class RegistrarNotasView extends VerticalSplitPanel implements View {
                                                                     + "codigo_corte, "
                                                                     + "nota"
                                                                 + ") VALUES ("
-                                                                    + codigoEstudianteAsignatura + ", "
-                                                                    + codigoCorte + ", "
-                                                                    + event.getProperty().getValue().toString()
+                                                                    + "?, "
+                                                                    + "?, "
+                                                                    + "?"
                                                                 + ") ON DUPLICATE KEY UPDATE "
-                                                                    + "nota = " + event.getProperty().getValue().toString();
-                            new GestionarNota(cadenaSql).start();
-    //                        new GuardarNota(codigoEstudianteAsignatura, codigoCorte, Float.valueOf( event.getProperty().getValue().toString() )).start();
+                                                                    + "nota = ?";
+                            new GestionarNota(cadenaSql, codigoEstudianteAsignatura, codigoCorte, Float.valueOf(event.getProperty().getValue().toString())).start();
                         }
                     });
                     if ( tblEstudiantes.size() == 0 )
@@ -454,8 +453,14 @@ public class RegistrarNotasView extends VerticalSplitPanel implements View {
     private void publicarNota(GestionDB objConnect, int codigoEstudianteAsignatura, int codigoCorte) throws SQLException, GestionDBException {
         cadenaSql = "UPDATE notas a "
                 + "SET a.publicada = 1 "
-                + "WHERE a.codigo_estudiante_asignatura = " + codigoEstudianteAsignatura + " AND a.codigo_corte = " + codigoCorte;
-        SeveralProcesses.confirmarSentencia(objConnect.insertarActualizarBorrar(cadenaSql, false));
+                + "WHERE a.codigo_estudiante_asignatura = ? AND a.codigo_corte = ?";
+        Connection conexion = objConnect.getConexion();
+        try (PreparedStatement stmt = conexion.prepareStatement(cadenaSql)) {
+            stmt.setInt(1, codigoEstudianteAsignatura);
+            stmt.setInt(2, codigoCorte);
+            stmt.execute();
+//        SeveralProcesses.confirmarSentencia(objConnect.insertarActualizarBorrar(cadenaSql, false));
+        }
     }
 
     private String getEmailEstuadiante(Object itemId) {
