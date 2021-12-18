@@ -1,0 +1,717 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+  @include valo;
+  
+  
+    .negrita {
+        font-weight: bold;
+    }
+    
+    .time-only .v-inline-datefield-calendarpanel-header,
+    .time-only .v-inline-datefield-calendarpanel-body {
+      display: none;
+    }
+  
+    .v-window-header {
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    
+    .ventanaazul {
+        .v-window-header {
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .v-window-outerheader {
+            background: #337AB7 none repeat scroll 0 0;
+            border: #337AB7;
+        }
+        
+        .v-window-contents {
+            border: #337AB7;
+        }
+
+        .v-window-closebox {
+            background: #337AB7 none repeat scroll 0 0;
+            border: #337AB7;
+            /*border: 0 none;*/
+            color: #fff;
+        }
+
+        .v-window-resizebox {
+            background: #337AB7 none repeat scroll 0 0;
+            border: #337AB7;
+            color: #fff;
+        }
+    }
+    
+    .v-textfield-filtro {
+        @include linear-gradient(#B6C6D6 10%, #C7D3E0 90%); /*background con degradado*/
+        color: #4E709B;
+        font-weight: bold;
+    }
+    .v-caption-captionleft {
+        display: inline-block;
+    }
+  
+    .v-select-optiongroup-horizontal .v-select-option {
+        display: inline-block;
+    }
+
+    .v-checkbox-inactivo input:not(:checked) + label {
+        color: red;
+        font-weight: bold;
+    }
+    
+    .v-table-tablainterior {
+        .v-table-cell-content {
+            font-size: 13px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            height: 17px;
+            /*background: #DADADA;*/
+            /*font-weight: bold;*/
+        }
+    }
+        
+    .v-table-tablafilasdelgadas {
+        .v-table-cell-content {
+            font-size: 13px;            
+            padding-top: 2px;
+            padding-bottom: 2px;
+            height: 17px;
+        }
+    }
+    
+    .v-table-tablaturnopantalla {
+        .v-table-cell-content {
+            font-size: 35px;
+            font-weight: bold;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            height: 50px;
+        }
+    }
+    
+    .v-table-tablafilasdelgadascomponente {
+        .v-table-cell-content {
+            font-size: 13px;            
+/*            padding-top: 2px;
+            padding-bottom: 2px;*/
+            height: 17px;
+        }
+    }
+    
+    .v-table-tablaasignaturas {
+        .v-table-cell-content {
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            height: 31px;
+        }
+    }
+    
+    .v-filterselect-delgado {
+        .v-filterselect-input, .v-filterselect-button {
+            font-size: 13px;
+            height: 25px;
+        }
+    }
+    
+    .centrartexto {
+        text-align: center;
+    }
+    
+    .borde {
+        border-bottom: 2px solid #3b5998;
+        border-left: 2px solid #3b5998;
+        border-right: 2px solid #3b5998;
+    }
+    
+    .bordeTotal {
+        border-top: 2px solid #3b5998;
+        border-bottom: 2px solid #3b5998;
+        border-left: 2px solid #3b5998;
+        border-right: 2px solid #3b5998;
+    }
+    
+    .colorRed {
+        color: red;
+        font-size: large;
+        font-weight: bold;
+    }
+    
+    .textoEnormeRojo {
+        color: red;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+    
+    .colorGreen {
+        font-size: large;
+        color: green;
+        font-weight: bold;
+    }
+    
+    .colorYellow {
+        font-size: large;
+        color: #E78F08;
+        font-weight: bold;
+    }
+    
+    .colorBlue {
+        font-size: large;
+        color: #337AB7;
+        font-weight: bold;
+    }
+    
+    .textorojo {
+        color: #FC0A02;
+    }
+    
+    .centrarCotenido {
+        text-align: center;
+    }
+    
+    .TextoDerecha {
+        text-align: right;
+    }
+    
+    .backColorWhite{
+           background-color: #fff;
+    }
+    
+    .backColorGray {
+           background-color: #FFFFFF;
+    }
+    
+    .v-button.azul {
+        /*background: #3598dc none repeat scroll 0 0;*/
+        background: #337AB7 none repeat scroll 0 0;
+        border: 0 none;
+        color: #fff;
+        /*height: 30px;*/
+/*        margin-left: -3px;
+        margin-top: 5px;*/
+    }
+    
+    .v-button.amarillo {
+        background: #E78F08 none repeat scroll 0 0;
+        border: 0 none;
+        color: #000;
+    }
+    
+    .v-button.verde {
+        background: #29BEA4 none repeat scroll 0 0;
+        border: 0 none;
+        color: #fff;
+    }
+    
+    .v-button.rojo {
+        background: #EB4B3E none repeat scroll 0 0;
+        border: 0 none;
+        color: #fff;
+    }
+    
+    .v-button.gris {
+        background: #DAE1E7 none repeat scroll 0 0;
+        border: 0 none;
+        color: #000;
+    }
+    
+    .v-button.blanco {
+        background: #fff none repeat scroll 0 0;
+        border: 0 none;
+        color: #FC0A02;
+    }
+    
+    .v-button.negro {
+        background: #000 none repeat scroll 0 0;
+        border: 0 none;
+        color: #fff;
+    }
+    
+    .v-upload.bua {
+        .v-button {
+            background: #29BEA4 none repeat scroll 0 0;
+            border: 0 none;
+            color: #fff;
+        }
+    }
+    
+    .fondoazuloscuro {
+        background: #82A0B6;
+        color: #000;
+        .v-caption {
+            font-weight: bold;
+            font-family: "Roboto",sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            text-transform: capitalize;
+        }
+    }
+    
+    .fondogris {
+        /*background: #e7ebf2;*/
+        @include linear-gradient(#587993 20%, #DDE4E9 80%);
+        color: #000;
+        .v-caption {
+            font-weight: bold;
+            font-family: "Roboto",sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            text-transform: capitalize;
+        }
+    }
+    
+    .fondoaplicacion {
+        background: #e7ebf2;
+    }
+    
+    .fondoblanco {
+        background: #fff;
+    }
+    
+    .v-button-toolsbarr {
+                        height: 49px; 
+    }
+                    
+    .v-textfield-toolsbarr {
+                        height: 49px; 
+                        text-align: center;
+                        font-size: x-large;
+                        font-weight: bold;
+    }
+                    
+    .v-panel-content-toolsbarr{
+        padding: 3px;
+    }
+    
+    .v-label-titulo{
+        font-size: large;
+        font-weight: bold;
+    }
+    
+    .v-textfield-upper{
+        text-transform: uppercase;
+    }
+  
+    .v-button-toolsbarr{
+        text-transform: lowercase;
+    }
+    
+    .v-table-datos .v-table-cell-content {
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: 12px;
+    }
+    
+    .v-panel-caption {
+        text-align: center;
+        /*background: #3598dc;*/
+        background: #E78F08;
+        /*@include linear-gradient(rgba(246,173,53,0.3), rgba(246,173,53,1)); background con degradado*/
+        color: #fff;
+        font-size: 14px;
+        line-height: 22px;
+        padding-top: 4px;
+        border: #E78F08;
+        /*font-weight: bold;*/
+    }
+    
+    .v-panel-caption-panelnormal {
+        /*text-align: center;*/
+        /*background: #3598dc;*/
+        /*background: #F7B64D;*/
+/*        @include linear-gradient(rgba(246,173,53,0.3), rgba(246,173,53,1)); background con degradado
+        color: #000;
+        font-size: 14px;*/
+        line-height: 30px;
+        /*padding-top: 4px;*/
+        /*font-weight: bold;*/
+    }
+    
+    .v-panel {
+        border-style: solid;
+        border-color: #E78F08;
+        /*border-color: #3598dc;*/
+    }
+    
+    .v-panel-caption-panelazul {
+        text-align: center;
+        /*@include linear-gradient(#B6C6D6 10%, #C7D3E0 90%); background con degradado*/
+        background: #337AB7;
+        color: #fff;
+        /*color: #4B5E6A;*/
+        font-size: 14px;
+        line-height: 22px;
+        padding-top: 4px;
+/*        border-style: solid;
+        border-color: #7D8184;*/
+        /*font-weight: bold;*/
+    }
+    
+    .v-panel-caption-panelverde {
+        text-align: center;
+        background: #19675f;
+        color: #fff;
+        font-size: 14px;
+        line-height: 22px;
+        padding-top: 4px;
+        /*font-weight: bold;*/
+    }
+    
+    .v-panel-caption-panelverdeancho {
+        text-align: center;
+        background: #19675f;
+        color: #fff;
+        font-size: 14px;
+        line-height: 30px;
+        padding-top: 4px;
+        font-weight: bold;
+    }
+    
+    .v-panel-caption-panelturnopantallarojo {
+        text-align: center;
+        background: red;
+        color: #fff;
+        height: 50px;
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
+    
+    .v-panel-caption-panelturnopantallanegro {
+        text-align: center;
+        background: #000;
+        color: #fff;
+        height: 50px;
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
+    
+    .v-panel-caption-panelturnopantallaverde {
+        text-align: center;
+        background: #19675f;
+        color: #fff;
+        height: 50px;
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
+    
+    .v-panel-bordeazul {
+        border-style: solid;
+        border-color: #337AB7;
+        /*border-color: #D4D4D4;*/
+        /*border-color: #3598dc;*/
+    }
+    
+    .v-panel-bordeverde {
+        border-style: solid;
+        border-color: #19675f;
+        /*border-color: #D4D4D4;*/
+        /*border-color: #3598dc;*/
+    }
+    
+    .v-panel-bordeblanco {
+        border-style: solid;
+        border-color: #fff;
+        /*border-color: #3598dc;*/
+    }
+    
+    .imagenfondo {
+        background: url("images/ImagenFondo.png");
+        background-size: cover;
+    }
+    
+    .fondologin {
+        background: url("images/fondologin.jpg");
+        background-size: cover;
+    }
+    
+    .v-accordion {
+        border-style: solid;
+        /*border-color: #B9392E;*/
+        border-color: #7D8184;
+    }
+    
+    .v-accordion-item-caption {
+        /*background: #82A0B6;*/
+        /*background: #E04236;*/
+        @include linear-gradient(#3A5872 20%, #5D87A5 80%);
+        /*background: #337AB7;*/
+        text-align: center;
+    }
+    
+    .v-accordion-item-caption  > .v-caption {
+        color: #fff;
+        font-size: 12px;
+        /*font-weight: bold;*/
+        line-height: 20px;
+        padding-top: 3px;
+    }
+        
+    .accordioninterior {
+        .v-accordion {
+            border-style: solid;
+            /*border-color: #B9392E;*/
+            border-color: #7D8184;
+        }
+
+        .v-accordion-item-caption {
+            /*background: #B6C6D6;*/
+            @include linear-gradient(#1985B5 20%, #1B8FC3 80%);
+            /*background: #337AB7;*/
+            text-align: center;
+        }
+        
+        .v-accordion-item-caption  > .v-caption {
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            padding-top: 3px;
+        }
+    }
+    
+    .accordionrojo {
+        .v-accordion {
+            border-style: solid;
+            /*border-color: #B9392E;*/
+            border-color: #7D8184;
+        }
+
+        .v-accordion-item-caption {
+            /*background: #B6C6D6;*/
+            @include linear-gradient(#FF0000 20%, #681000 80%);
+            /*background: #337AB7;*/
+            text-align: center;
+        }
+        
+        .v-accordion-item-caption  > .v-caption {
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            padding-top: 3px;
+        }
+    }
+    
+    .v-tabsheet-tabs {
+        .v-tabsheet-tabitem {
+            text-align: center;
+            border-bottom-style: solid;
+            border-bottom-color: #9B9B9B;
+            border-bottom-width: thin;
+        }
+        .v-tabsheet-tabitem > .v-caption {
+            color: #FFFFFF;
+        }
+        .v-tabsheet-tabitem-selected {
+            border-bottom-style: none;
+        }
+    }
+    
+    .v-tabsheet-tabs, .v-tabsheet-tabcontainer, .v-tabsheet-spacertd {
+        /*background: #DADADA;*/
+        @include linear-gradient(#3A5872 20%, #5D87A5 80%);
+    }
+    
+    .v-tabsheet-tabs, .v-tabsheet-tabcontainer, .v-tabsheet-tabitem {        
+        .v-tabsheet-tabitem-selected > .v-caption {
+            font-size: 14px;
+            color: #000;
+/*            font-weight: bold;
+            font-family: cursive;*/
+        }
+        .v-tabsheet-tabitem-selected {
+            background: #FFFFFF;
+        }
+    }
+    
+    .v-tabsheet-tabs-pestanas {        
+        .v-tabsheet-tabitem {
+            width: 300px;
+            border-right-style: solid;
+            border-right-color: #9B9B9B;
+            border-right-width: thin;
+            border-left-style: solid;
+            border-left-color: #9B9B9B;
+            border-left-width: thin;
+        }
+    }
+    
+    .v-tabsheet-tabs-pestanasinferiores {        
+        .v-tabsheet-tabitem {
+            width: 200px;
+            border-right-style: solid;
+            border-right-color: #9B9B9B;
+            border-right-width: thin;
+            border-left-style: solid;
+            border-left-color: #9B9B9B;
+            border-left-width: thin;
+        }
+    }
+    
+    .v-tabsheet-tabitem-pestanasfondoaplicacion, .v-tabsheet-tabcontainer-pestanasfondoaplicacion, .v-tabsheet-tabitem-pestanasfondoaplicacion {
+        .v-tabsheet-tabitem-selected > .v-caption {
+            font-size: 14px;
+            color: #000;
+        }
+        .v-tabsheet-tabitem-selected {
+            background: #e7ebf2;
+        }
+    }
+    
+    .v-table-header-cell, .v-table-header-cell-asc, .v-table-header-cell-desc {
+        /*background: #D6EBF6;*/
+        /*@include linear-gradient(#D9EDF7 20%, #C4E3F3 80%); background con degradado*/
+        @include linear-gradient(#B6C6D6 10%, #C7D3E0 90%); /*background con degradado*/
+        /*color: #4E709B;*/
+        color: #4B5E6A;
+        font-size: 14px;
+        text-align: center;
+        font-weight: bold;
+        /*font-family: "Roboto", sans-serif;*/
+    }
+    
+    .v-table-row.v-table-row-fila-resaltada, .v-table-row-odd.v-table-row-fila-resaltada {
+        background-color: #E78F08;
+        /*@include linear-gradient(rgba(246,173,53,0.3), rgba(246,173,53,1)); background con degradado*/
+        color: #000;
+        font-size: 14px;
+        font-weight: bold;
+        border-style: none;
+    }
+    
+    .v-table-row.v-table-row-tablefilaresaltadaazul, .v-table-row-odd.v-table-row-tablefilaresaltadaazul {
+        /*@include linear-gradient(#1985B5 20%, #1B8FC3 80%);*/
+        background: #29BEA4;
+        /*font-weight: bold;*/
+        /*color: white;*/
+    }
+    
+    .v-table-cell-content-tablaColumnaResaltadaamarilloclaro {
+        background: #FDFE00;
+        color: #000;
+    }
+    
+    .v-table-cell-content-tablaColumnaResaltadaverde {
+        background: #29BEA4;
+        color: #000;
+    }
+    
+    .v-table-cell-content-tablaColumnaResaltadaamarillo {
+        background: #E78F08;
+        color: #fff;
+    }
+    
+    .v-table-cell-content-tablaColumnaResaltadarojo {
+        background: #FC0A02;
+        color: #fff;
+    }
+    
+    .v-table-row.v-table-row-tablefilaresaltadagris, .v-table-row-odd.v-table-row-tablefilaresaltadagris {
+        @include linear-gradient(#DCE3E9 20%, #DAE1E7 80%);
+        /*background: #5D6E7A;*/
+    }
+    
+    .v-table-row.v-table-row-tablefilaresaltadaamarillo, .v-table-row-odd.v-table-row-tablefilaresaltadaamarillo {
+        /*@include linear-gradient(#FFF3D2 20%, #f6ad35 80%);*/
+        background: #E78F08;
+        /*color: #fff;*/
+    }
+    
+    .v-table-row.v-table-row-tablefilaresaltadaverde, .v-table-row-odd.v-table-row-tablefilaresaltadaverde {
+        /*@include linear-gradient(#29BEA4 20%, #D8F5EA 80%);*/
+        background: #29BEA4;
+        color: #fff;
+    }
+    
+    .v-table-row.v-table-row-tablefilasinresaltar, .v-table-row-odd.v-table-row-tablefilasinresaltar {
+        color: #FC0A02;
+    }
+    
+    .v-table-cell-content-celdasinrealtar {
+        color: #FC0A02;
+    }
+    
+    .v-grid .v-grid-header th.v-grid-cell {
+        /*background: #D6EBF6;*/
+        /*@include linear-gradient(#D9EDF7 20%, #C4E3F3 80%); background con degradado*/
+        @include linear-gradient(#B6C6D6 10%, #C7D3E0 90%); /*background con degradado*/
+        /*color: #4E709B;*/
+        color: #4B5E6A;
+        line-height: 24px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: bold;
+        /*font-family: "Roboto", sans-serif;*/
+    }
+    
+    .v-grid-body .v-grid-cell {  
+        line-height: 24px;
+        font-size: 12px;
+        text-align: center;
+        /*font-weight: bold;*/
+    }
+    
+    .v-textarea { 
+        overflow-y: auto ! important;
+    }
+         
+    .v-textfield.v-disabled, .v-textarea.v-disabled, .v-filterselect.v-disabled, .v-filterselect.v-disabled [class*="input"], .v-datefield.v-disabled {
+	opacity: 1;
+	filter: alpha(opacity=100);
+        /*background: #D8D9D8;*/
+        background: #fff;
+        color: #000;
+        font-weight: bold;
+    }
+    
+    .v-filterselect.v-disabled [class$="button"] {
+        background: #fff;
+    }
+
+  // Insert your own theme rules here
+}
